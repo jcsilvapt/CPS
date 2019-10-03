@@ -1,1 +1,67 @@
 https://colab.research.google.com/drive/1s4xN_NKYLI96AiN63S45cdbvOMq-Aodm
+
+# -*- coding: utf-8 -*-
+"""
+Spyder Editor
+
+This is a temporary script file.
+"""
+
+"""
+    Amostragem
+    
+    Iremos neste momento estudar como fazer gráficamente um sinal, espetros de Amplitude e Fase
+    
+    Nomenclatura:
+        x(t)=a*cos(w*t+0)
+            ou
+        xt(t)=a*cos(2pi*f*t+0)
+        
+        a = Amplitude
+        w = Frequência Angular (rads/s)
+        0 = Fase (Distância da origem)
+        f = Frequência linear (Hz) pode também ser calculada através de T = 2pi/w (=) 1/f
+        
+    Para converter radianos para Hz usar = w=2pi*f
+    
+    consideremos o seguinte sinal cos(2*pi*500*t)
+    
+    F = Frequência do sinal (Hz)
+    Fnyquist = 2 * F
+    Fs > Fnyquist
+    Fs = Periodo Fundamental (1/F)
+    
+    Período de Amostragem = Ts
+    Frequência de Amostragem = Fs
+    
+    Ts = 1/Fs
+
+"""
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+F = 100
+
+Fs = F*2
+Ts = 1/Fs
+
+t = np.linspace(0, 40, 1/F)
+n = np.arange(0,40)
+
+x = np.cos(2*np.pi*F*t)
+xN = np.cos(2*np.pi*F*n/Fs)
+
+plt.figure(figsize=(15,10))
+plt.subplot(311)
+plt.grid(True)
+plt.title("Gráfico de x(t)")
+plt.plot(t,x)
+
+plt.subplot(312)
+plt.plot(t,x,"k--")
+plt.grid(True)
+plt.title("Amostragem de x(t)")
+plt.stem(n,xN)
+
+asd = (2*np.pi)/(1/)
